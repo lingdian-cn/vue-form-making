@@ -7,7 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 // import 'form-making/dist/FormMaking.css'
 // import FormMaking from 'form-making'
-import FormMaking from './index'
+import FormMaking from './index_fm'
 Vue.use(FormMaking)
 
 Vue.config.productionTip = false

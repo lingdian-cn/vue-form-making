@@ -5,13 +5,13 @@
         <el-aside width="250px">
           <div class="components-list">
             <div class="widget-cate">基础字段</div>
-            <draggable tag="ul" :list="basicComponents" 
+            <draggable tag="ul" :list="basicComponents"
               v-bind="{group:{ name:'people', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}"
               @end="handleMoveEnd"
               @start="handleMoveStart"
               :move="handleMove"
             >
-              
+
               <li class="form-edit-widget-label" v-for="(item, index) in basicComponents" :key="index">
                 <a>
                   <i class="icon iconfont" :class="item.icon"></i>
@@ -21,13 +21,13 @@
             </draggable>
 
             <div class="widget-cate">高级字段</div>
-            <draggable tag="ul" :list="advanceComponents" 
+            <draggable tag="ul" :list="advanceComponents"
               v-bind="{group:{ name:'people', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}"
               @end="handleMoveEnd"
               @start="handleMoveStart"
               :move="handleMove"
             >
-              
+
               <li class="form-edit-widget-label" v-for="(item, index) in advanceComponents" :key="index">
                 <a>
                   <i class="icon iconfont" :class="item.icon"></i>
@@ -35,15 +35,15 @@
                 </a>
               </li>
             </draggable>
-            
+
             <div class="widget-cate">布局字段</div>
-            <draggable tag="ul" :list="layoutComponents" 
+            <draggable tag="ul" :list="layoutComponents"
               v-bind="{group:{ name:'people', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}"
               @end="handleMoveEnd"
               @start="handleMoveStart"
               :move="handleMove"
             >
-              
+
               <li class="form-edit-widget-label data-grid" v-for="(item, index) in layoutComponents" :key="index">
                 <a>
                   <i class="icon iconfont" :class="item.icon"></i>
@@ -52,7 +52,7 @@
               </li>
             </draggable>
           </div>
-          
+
         </el-aside>
         <el-container class="center-container" direction="vertical">
           <el-header class="btn-bar" style="height: 45px;">
@@ -65,11 +65,11 @@
             <el-button v-if="generateCode" type="text" size="medium" icon="el-icon-document" @click="handleGenerateCode">生成代码</el-button>
           </el-header>
           <el-main :class="{'widget-empty': widgetForm.list.length == 0}">
-            
+
             <widget-form v-if="!resetJson"  ref="widgetForm" :data="widgetForm" :select.sync="widgetFormSelect"></widget-form>
           </el-main>
         </el-container>
-        
+
         <el-aside class="widget-config-container">
           <el-container>
             <el-header height="45px">
@@ -81,7 +81,7 @@
               <form-config v-show="configTab=='form'" :data="widgetForm.config"></form-config>
             </el-main>
           </el-container>
-          
+
         </el-aside>
 
         <cus-dialog
@@ -124,9 +124,9 @@
           width="800px"
           form
         >
-          
+
           <div id="jsoneditor" style="height: 400px;width: 100%;">{{jsonTemplate}}</div>
-          
+
           <template slot="action">
             <el-button type="primary" class="json-btn" :data-clipboard-text="jsonCopyValue">复制数据</el-button>
           </template>
@@ -144,9 +144,9 @@
         </cus-dialog>
       </el-container>
     </el-main>
-    <el-footer height="30px" style="font-weight: 600;">Powered by <a target="_blank" href="https://github.com/GavinZhuLei/vue-form-making">GavinZhuLei</a></el-footer>
+<!--    <el-footer height="30px" style="font-weight: 600;">Powered by <a target="_blank" href="https://github.com/GavinZhuLei/vue-form-making">GavinZhuLei</a></el-footer>-->
   </el-container>
-  
+
 </template>
 
 <script>
@@ -158,8 +158,8 @@ import CusDialog from './CusDialog'
 import GenerateForm from './GenerateForm'
 import Clipboard from 'clipboard'
 import {basicComponents, layoutComponents, advanceComponents} from './componentsConfig.js'
-import {loadJs, loadCss} from '../util/index.js'
-import request from '../util/request.js'
+import {loadJs, loadCss} from '../../utils/index_fm'
+import request from '../../utils/request_fm.js'
 import generateCode from './generateCode.js'
 
 export default {
@@ -186,7 +186,7 @@ export default {
       default: false
     },
     upload: {
-      type: Boolean, 
+      type: Boolean,
       default: false
     },
     clearable: {
@@ -301,17 +301,17 @@ export default {
     handleConfigSelect (value) {
       this.configTab = value
     },
-    handleMoveEnd (evt) {
-      console.log('end', evt)
-    },
     handleMoveStart ({oldIndex}) {
-      console.log('start', oldIndex, this.basicComponents)
+        console.log('start-c', oldIndex, this.basicComponents)
+    },
+    handleMoveEnd (evt) {
+      console.log('end-c', evt)
     },
     handleMove () {
       return true
     },
     handlePreview () {
-      console.log(this.widgetForm)
+      console.log('handlePreview', this.widgetForm)
       this.previewVisible = true
     },
     handleTest () {
@@ -328,7 +328,7 @@ export default {
     handleGenerateJson () {
       this.jsonVisible = true
       this.jsonTemplate = this.widgetForm
-      console.log(JSON.stringify(this.widgetForm))
+      console.log('handleGenerateJson', JSON.stringify(this.widgetForm))
       this.$nextTick(() => {
 
         const editor = ace.edit('jsoneditor')
@@ -394,7 +394,7 @@ export default {
       }
     },
     handleInput (val) {
-      console.log(val)
+      console.log('handleInput', val)
       this.blank = val
     }
   },
@@ -402,7 +402,7 @@ export default {
     widgetForm: {
       deep: true,
       handler: function (val) {
-        console.log(this.$refs.widgetForm)
+        console.log('watch-widgetForm', this.$refs.widgetForm)
       }
     }
   }
@@ -411,7 +411,7 @@ export default {
 
 <style lang="scss">
 .widget-empty{
-  background: url('../assets/form_empty.png') no-repeat;
+  background: url('../../assets/form_empty.png') no-repeat;
   background-position: 50%;
 }
 

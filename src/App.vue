@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="fm-header">
+    <!--<div class="fm-header">
       <img class="fm-logo" src="./assets/logo.png">
       <div class="fm-title" @click="handleHome">表单设计器</div>
 
@@ -12,7 +12,7 @@
         <a href="https://gitee.com/gavinzhulei/vue-form-making">码云</a>
         <a href="http://www.xiaoyaoji.cn" target="_blank">小幺鸡接口文档</a>
       </div>
-    </div>
+    </div>-->
     <div  class="fm-container"><router-view/></div>
   </div>
 </template>
@@ -75,7 +75,7 @@ export default {
   }
 }
 .fm-container{
-  height: calc(100% - 50px);
+  height: 100%;
 }
 *, :after, :before {
     -webkit-box-sizing: border-box;

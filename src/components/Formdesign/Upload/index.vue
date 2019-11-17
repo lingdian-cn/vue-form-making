@@ -7,7 +7,7 @@
       v-bind="{group: uploadId, ghostClass: 'ghost', animation: 200}"
       :no-transition-on-drag="true"
     >
-      <div 
+      <div
         :id="item.key"
         :style="{width: width+'px', height: height+'px'}"
         :class="{uploading: item.status=='uploading', 'is-success': item.status=='success', 'is-diabled': disabled}"
@@ -176,7 +176,7 @@ export default {
         }
       }
       this.$refs.uploadInput.value = []
-    }, 
+    },
     uplaodAction (res, file, key) {
       let changeIndex = this.fileList.findIndex(item => item.key === key)
       console.log(this.fileList.findIndex(item => item.key === key))

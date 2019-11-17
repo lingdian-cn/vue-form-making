@@ -5,36 +5,36 @@
 </template>
 
 <script>
-import {generateUUID, loadJs, loadCss} from '../../util/index.js'
-import tinymce from '../../lib/tinymce/tinymce.js'
-import '../../lib/tinymce/themes/modern/theme'
-import '../../lib/tinymce/skins/lightgray/skin.min.css'
-import '../../lib/tinymce/skins/lightgray/content.min.css'
-import '../../lib/tinymce/skins/lightgray/fonts/tinymce.ttf'
-import '../../lib/tinymce/skins/lightgray/fonts/tinymce.woff'
+import {generateUUID, loadJs, loadCss} from '../../../utils/index_fm'
+import tinymce from '../../../lib/tinymce'
+import '../../../lib/tinymce/themes/modern/theme'
+import '../../../lib/tinymce/skins/lightgray/skin.min.css'
+import '../../../lib/tinymce/skins/lightgray/content.min.css'
+import '../../../lib/tinymce/skins/lightgray/fonts/tinymce.ttf'
+import '../../../lib/tinymce/skins/lightgray/fonts/tinymce.woff'
 
-import '../../lib/tinymce/plugins/advlist'
-import '../../lib/tinymce/plugins/autolink'
-import '../../lib/tinymce/plugins/lists'
-import '../../lib/tinymce/plugins/link'
-import '../../lib/tinymce/plugins/image'
-import '../../lib/tinymce/plugins/charmap'
-import '../../lib/tinymce/plugins/print'
-import '../../lib/tinymce/plugins/preview'
-import '../../lib/tinymce/plugins/anchor'
-import '../../lib/tinymce/plugins/textcolor'
-import '../../lib/tinymce/plugins/searchreplace'
-import '../../lib/tinymce/plugins/visualblocks'
-import '../../lib/tinymce/plugins/code'
-import '../../lib/tinymce/plugins/fullscreen'
-import '../../lib/tinymce/plugins/insertdatetime'
-import '../../lib/tinymce/plugins/media'
-import '../../lib/tinymce/plugins/table'
-import '../../lib/tinymce/plugins/contextmenu'
-import '../../lib/tinymce/plugins/paste'
-import '../../lib/tinymce/plugins/help'
-import '../../lib/tinymce/plugins/wordcount'
-import '../../lib/tinymce/plugins/colorpicker'
+import '../../../lib/tinymce/plugins/advlist'
+import '../../../lib/tinymce/plugins/autolink'
+import '../../../lib/tinymce/plugins/lists'
+import '../../../lib/tinymce/plugins/link'
+import '../../../lib/tinymce/plugins/image'
+import '../../../lib/tinymce/plugins/charmap'
+import '../../../lib/tinymce/plugins/print'
+import '../../../lib/tinymce/plugins/preview'
+import '../../../lib/tinymce/plugins/anchor'
+import '../../../lib/tinymce/plugins/textcolor'
+import '../../../lib/tinymce/plugins/searchreplace'
+import '../../../lib/tinymce/plugins/visualblocks'
+import '../../../lib/tinymce/plugins/code'
+import '../../../lib/tinymce/plugins/fullscreen'
+import '../../../lib/tinymce/plugins/insertdatetime'
+import '../../../lib/tinymce/plugins/media'
+import '../../../lib/tinymce/plugins/table'
+import '../../../lib/tinymce/plugins/contextmenu'
+import '../../../lib/tinymce/plugins/paste'
+import '../../../lib/tinymce/plugins/help'
+import '../../../lib/tinymce/plugins/wordcount'
+import '../../../lib/tinymce/plugins/colorpicker'
 
 export default {
   props: {
@@ -67,7 +67,7 @@ export default {
         height: this.height,
         menubar: false,
         // images_upload_handler: (blobInfo, success, failure) => {
-          
+        
         // },
         init_instance_callback: (editor) => {
           console.log("Editor: " + editor.id + " is now initialized.");

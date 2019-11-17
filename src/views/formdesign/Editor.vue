@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import FmEditor from '../components/Editor/tinymce'
+import FmEditor from '../../components/Formdesign/Editor/tinymce'
 
 export default {
   components: {

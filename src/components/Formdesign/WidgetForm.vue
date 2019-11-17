@@ -2,9 +2,9 @@
   <div class="widget-form-container">
     <div v-if="data.list.length == 0" class="form-empty">从左侧拖拽来添加字段</div>
     <el-form :size="data.config.size" label-suffix=":" :label-position="data.config.labelPosition" :label-width="data.config.labelWidth + 'px'">
-      
-      <draggable class="" 
-        v-model="data.list" 
+
+      <draggable class=""
+        v-model="data.list"
         v-bind="{group:'people', ghostClass: 'ghost',animation: 200, handle: '.drag-widget'}"
         @end="handleMoveEnd"
         @add="handleWidgetAdd"
@@ -13,7 +13,7 @@
         <transition-group name="fade" tag="div" class="widget-form-list">
           <template v-for="(element, index) in data.list">
             <template v-if="element.type == 'grid'">
-                <el-row class="widget-col widget-view" v-if="element && element.key" :key="element.key" 
+                <el-row class="widget-col widget-view" v-if="element && element.key" :key="element.key"
                   type="flex"
                   :class="{active: selectWidget.key == element.key}"
                   :gutter="element.options.gutter ? element.options.gutter : 0"
@@ -21,7 +21,7 @@
                   :align="element.options.align"
                   @click.native="handleSelectWidget(index)">
                   <el-col  v-for="(col, colIndex) in element.columns" :key="colIndex" :span="col.span ? col.span : 0">
-                    
+
                       <draggable
                         v-model="col.list"
                         :no-transition-on-drag="true"
@@ -30,21 +30,21 @@
                         @add="handleWidgetColAdd($event, element, colIndex)"
                       >
                         <transition-group name="fade" tag="div" class="widget-col-list">
-                          <widget-form-item 
+                          <widget-form-item
                             v-for="(el, i) in col.list"
                             :key="el.key"
                             v-if="el.key"
-                            :element="el" 
-                            :select.sync="selectWidget" 
-                            :index="i" 
+                            :element="el"
+                            :select.sync="selectWidget"
+                            :index="i"
                             :data="col">
                           </widget-form-item>
                         </transition-group>
-                        
+
                       </draggable>
                   </el-col>
                   <div class="widget-view-action widget-col-action" v-if="selectWidget.key == element.key">
-        
+
                     <i class="iconfont icon-trash" @click.stop="handleWidgetDelete(index)"></i>
                   </div>
 
@@ -89,19 +89,18 @@ export default {
   },
   methods: {
     handleMoveEnd ({newIndex, oldIndex}) {
-      console.log('index', newIndex, oldIndex)
+      console.log('end-w', newIndex, oldIndex)
     },
     handleSelectWidget (index) {
-      console.log(index, '#####')
+      console.log('handleSelectWidget', index, '#####')
       this.selectWidget = this.data.list[index]
     },
     handleWidgetAdd (evt) {
-      console.log('add', evt)
-      console.log('end', evt)
+      console.log('add-w', evt)
       const newIndex = evt.newIndex
       const to = evt.to
-      console.log(to)
-      
+      console.log('to--',to, newIndex)
+
       //为拖拽到容器的元素添加唯一 key
       const key = Date.parse(new Date()) + '_' + Math.ceil(Math.random() * 99999)
       this.$set(this.data.list, newIndex, {
@@ -135,7 +134,9 @@ export default {
         })
       }
 
+      console.log('this.data.list', this.data)
       this.selectWidget = this.data.list[newIndex]
+      console.log('selectWidget', this.selectWidget)
     },
     handleWidgetColAdd ($event, row, colIndex) {
       console.log('coladd', $event, row, colIndex)

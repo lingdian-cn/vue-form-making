@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form ref="generateForm" 
+    <el-form ref="generateForm"
       label-suffix=":"
       :size="data.config.size"
       :model="models" :rules="rules" :label-position="data.config.labelPosition" :label-width="data.config.labelWidth + 'px'">
@@ -44,7 +44,7 @@
 
 <script>
 import GenetateFormItem from './GenerateFormItem'
-import {loadJs} from '../util/index.js'
+import {loadJs} from '../../utils/index_fm'
 
 export default {
   name: 'fm-generate-form',
@@ -78,7 +78,7 @@ export default {
               this.$set(this.models, genList[i].model, genList[i].options.defaultType === 'String' ? '' : (genList[i].options.defaultType === 'Object' ? {} : []))
             } else {
               this.models[genList[i].model] = genList[i].options.defaultValue
-            }      
+            }
           }
           
           if (this.rules[genList[i].model]) {
@@ -99,7 +99,7 @@ export default {
                 return {...item}
               }
             })]
-          }      
+          }
         }
       }
     },
@@ -118,7 +118,7 @@ export default {
       this.$refs.generateForm.resetFields()
     },
     refresh () {
-      
+    
     }
   },
   watch: {
@@ -140,5 +140,5 @@ export default {
 </script>
 
 <style lang="scss">
-// @import '../styles/cover.scss';
+// @import '../styles/cover_fm.scss';
 </style>
